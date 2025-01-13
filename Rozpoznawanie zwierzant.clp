@@ -5,7 +5,7 @@
   (printout t "Odpowiedz na kilka pytan, aby okreslic jakie zwierze opisujesz." crlf)
   
   ;; Pytanie o długość życia
-  (printout t "Podaj dlugosc zycia zwierzecia (krotka, srednia, dluga): ")
+  (printout t "Podaj dlugosc zycia zwierzecia (krotka [do 5 lat], srednia [6-20 lat], dluga [powyzej 20 lat]): ")
   (bind ?dlugosc-zycia (read))
   (assert (dlugosc-zycia ?dlugosc-zycia))
 )
@@ -14,7 +14,7 @@
 (defrule pytaj-o-dlugosc-ciala-krotka
   (dlugosc-zycia krotka)
   =>
-  (printout t "Podaj dlugosc ciala zwierzecia (mala, srednia, duza): ")
+  (printout t "Podaj dlugosc ciala zwierzecia (mala [do 1 m], srednia [1-3 m], duza [powyzej 3 m]): ")
   (bind ?dlugosc-ciala (read))
   (assert (dlugosc-ciala ?dlugosc-ciala))
 )
@@ -33,7 +33,7 @@
   (dlugosc-zycia srednia)
   (typ-pokarmu miesozerna)
   =>
-  (printout t "Podaj dlugosc ciala zwierzecia (mala, srednia, duza): ")
+  (printout t "Podaj dlugosc ciala zwierzecia (srednia [1-3 m], duza [powyzej 3 m]): ")
   (bind ?dlugosc-ciala (read))
   (assert (dlugosc-ciala ?dlugosc-ciala))
 )
@@ -42,7 +42,7 @@
   (dlugosc-zycia srednia)
   (typ-pokarmu roslinozerna)
   =>
-  (printout t "Podaj wage zwierzecia (lekka, srednia, ciezka): ")
+  (printout t "Podaj wage zwierzecia (lekka [do 20 kg], srednia [20-100 kg]: ")
   (bind ?waga (read))
   (assert (waga ?waga))
 )
@@ -51,7 +51,7 @@
 (defrule pytaj-o-wage-dluga
   (dlugosc-zycia dluga)
   =>
-  (printout t "Podaj wage zwierzecia (lekka, srednia, ciezka): ")
+  (printout t "srednia [20-100 kg], ciezka [powyzej 100 kg]): ")
   (bind ?waga (read))
   (assert (waga ?waga))
 )
@@ -85,7 +85,7 @@
   (dlugosc-zycia krotka)
   (dlugosc-ciala mala)
   =>
-  (printout t "Zwierze: DRZEWOŁAZ" crlf)
+  (printout t "Zwierze: DRZEWOLAZ" crlf)
 )
 
 (defrule r4
@@ -109,7 +109,7 @@
   (typ-pokarmu miesozerna)
   (dlugosc-ciala duza)
   =>
-  (printout t "Zwierze: REKIN BŁĘKITNY" crlf)
+  (printout t "Zwierze: REKIN BLEKITNY" crlf)
 )
 
 (defrule r7
@@ -117,7 +117,7 @@
   (typ-pokarmu roslinozerna)
   (waga lekka)
   =>
-  (printout t "Zwierze: JEŻOZWIERZ" crlf)
+  (printout t "Zwierze: JEZOZWIERZ" crlf)
 )
 
 (defrule r8
@@ -140,12 +140,6 @@
   (waga ciezka)
   (typ-pokarmu roslinozerna)
   =>
-  (printout t "Zwierze: SŁOŃ AFRYKAŃSKI" crlf)
+  (printout t "Zwierze: SŁON AFRYKANSKI" crlf)
 )
 
-;; Domyślna reguła w przypadku braku dopasowania
-(defrule brak-dopasowania
-  (dlugosc-zycia ?dl)
-  =>
-  (printout t "Nie znaleziono zwierzecia o podanych cechach." crlf)
-)
